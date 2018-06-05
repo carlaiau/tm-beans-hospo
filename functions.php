@@ -7,13 +7,13 @@ require_once( get_template_directory() . '/lib/init.php' );
  * Remove this action and callback function if you do not whish to use LESS to style your site or overwrite UIkit variables.
  * If you are using LESS, make sure to enable development mode via the Admin->Appearance->Settings option. LESS will then be processed on the fly.
  */
-add_action( 'beans_uikit_enqueue_scripts', 'beans_child_enqueue_uikit_assets' );
-
-
-
-function beans_child_enqueue_uikit_assets() {
+add_action( 'beans_uikit_enqueue_scripts', function() {
 	beans_compiler_add_fragment( 'uikit', get_stylesheet_directory_uri() . '/style.less', 'less' );
-}
+});
+add_action( 'beans_uikit_enqueue_scripts', function(){
+	beans_uikit_enqueue_components( array('flex'));
+	beans_uikit_enqueue_components( array( 'sticky'), 'add-ons');
+});
 
 
 /*
@@ -36,10 +36,16 @@ beans_remove_markup('beans_main_grid');
 
 
 
-add_action( 'beans_uikit_enqueue_scripts', function(){
-	beans_uikit_enqueue_components( array('flex'));
 
-});
+
+/* Header */
+if(is_user_logged_in()){
+    beans_add_attribute('beans_header', 'data-uk-sticky', '{top:32}');
+}
+else{
+    beans_add_attribute('beans_header', 'data-uk-sticky', '');
+}
+
 
 
 

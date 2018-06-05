@@ -2,26 +2,38 @@
  * In this file, you may style your site using CSS or LESS as well as overwrite UIkit LESS variables.
  * Make sure to enable development mode via the Admin->Appearance->Settings option while working on your website. LESS will then be processed on the fly.
  */
-html {
+html, h1, h2, h3, h4, h5{
     font-family: "Helvetica", sans-serif;
 }
 
 .uk-container{
-    width: 90vw;
-    min-width: 90vw;
-    max-width: 90vw;
+    min-width: 960px;
     padding: 0;
 }
 
+.tm-header{
+    margin-bottom: -41px;
+    background: #fff;
+}
 .tm-main {
     background-color: white;
+}
+hr{
+    width: 50px;
+    border-color: #ccc;
+    border-width: 5px;
+}
+
+#hero{
+    h1{
+        text-transform: uppercase;
+        font-size: 3em;
+    }
 }
 
 .doms{
     padding: 5%;
     div{
-        border: 1px solid #f00;
-
         img{
             max-width: 100%;
             max-height: 80vh;

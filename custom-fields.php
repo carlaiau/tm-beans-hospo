@@ -24,6 +24,7 @@ add_action( 'carbon_fields_register_fields', function() {
             Field::make('image', 'header_image', 'Image'),
             Field::make('text', 'header_start', 'Header Start'),
             Field::make('complex', 'header_end', 'Header End')
+                ->set_layout('tabbed-horizontal')
                 ->add_fields(array(
                     Field::make('text', 'string', 'String')
                 ))
@@ -35,6 +36,7 @@ add_action( 'carbon_fields_register_fields', function() {
         ->where('post_template', '=', 'page-home.php')
         ->add_fields( array(
             Field::make('complex', 'section', 'Section')
+            ->set_layout('tabbed-vertical')
             ->add_fields(array(
                 Field::make('text', 'id', 'ID')
                     ->help_text("Set an ID, if you to anchor navigate to this section"),
