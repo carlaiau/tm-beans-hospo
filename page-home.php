@@ -5,7 +5,6 @@
 
 beans_modify_action_callback('beans_loop_template', function(){
     global $post;
-
     /*
      * All Carbon fields
      */
@@ -16,6 +15,7 @@ beans_modify_action_callback('beans_loop_template', function(){
     $sections = carbon_get_the_post_meta('section');
     $footer_columns = carbon_get_the_post_meta('footer_columns');
     ?>
+    
     <div class="uk-cover uk-height-viewport uk-position-relative">
         <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center uk-position-cover">
             <div class="uk-container uk-container-center img-left">
