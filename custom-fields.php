@@ -51,6 +51,7 @@ add_action( 'carbon_fields_register_fields', function() {
         ->where('post_template', '=', 'page-home.php')
         ->add_fields( array(
             Field::make('complex', 'footer_column', 'Column')
+            ->set_layout('tabbed-horizontal')
             ->add_fields(array(
                 Field::make('rich_text', 'paragraph', 'Paragraph')
             ))

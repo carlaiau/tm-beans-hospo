@@ -2,32 +2,120 @@
  * In this file, you may style your site using CSS or LESS as well as overwrite UIkit LESS variables.
  * Make sure to enable development mode via the Admin->Appearance->Settings option while working on your website. LESS will then be processed on the fly.
  */
+
+/* https://flatuicolors.com/palette/us */
+// Green
+@light-greenish-blue: rgba(85, 239, 196,1.0);
+@mint-leaf: rgba(0, 184, 148,1.0);
+
+// Grey
+@american-river: rgba(99, 110, 114,1.0);
+@soothing-breeze: rgba(178, 190, 195,1.0);
+@dracula-orchard: rgba(45, 52, 54,1.0);
+@city-lights: rgba(223, 230, 233,1.0);
+
+// blue
+@electron-blue: rgba(9, 132, 227,1.0);
+body{
+    font-size: 18px;
+}
 html, h1, h2, h3, h4, h5{
     font-family: "Helvetica", sans-serif;
+    color: @american-river;
 }
+h1, h2, h3, h4, h5{
+    font-weight: 700;
+}
+h2,h3,h4,h5{
+    color: @electron-blue;
+}
+h1{
 
+    font-size: 2.5em;
+}
+h2{
+
+    line-height: 1.3em;
+    font-size: 2em;
+
+}
+p{
+    line-height: 1.5em;
+}
 .uk-container{
-    min-width: 960px;
+    min-width: 1200px;
     padding: 0;
 }
 
 .tm-header{
-    margin-bottom: -41px;
+    padding: 10px;
+    margin-bottom: -61px;
     background: #fff;
+    border-bottom: none;
+    .uk-container{
+        padding: 0 5%;
+    }
+    .tm-site-branding{
+        a{
+            color: @dracula-orchard;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 40px;
+        }
+    }
+    .uk-navbar-nav{
+        & > li{
+            text-transform: uppercase;
+            & > a{
+                color: @dracula-orchard;
+            }
+        }
+    }
 }
 .tm-main {
     background-color: white;
 }
 hr{
     width: 50px;
-    border-color: #ccc;
+    border-color: @soothing-breeze;
     border-width: 5px;
 }
 
 #hero{
+    .ti-cursor{
+        display: none !important;
+    }
     h1{
         text-transform: uppercase;
-        font-size: 3em;
+        font-size: 2.5em;
+        line-height: 1.3em;
+        color: american-river;
+        .typed-element{
+            color: @dracula-orchard;
+        }
+    }
+    .uk-form{
+        padding: 20px 0 0;
+        .uk-email{
+            border: 3px solid @dracula-orchard;
+            padding: 9px 20px;
+            border-radius: 0;
+            height: auto;
+        }
+        .uk-button{
+            color: @dracula-orchard;
+            border: 3px solid @dracula-orchard;
+            padding: 9px 20px;
+            margin-left: 5px;
+            text-transform: uppercase;
+            background: @light-greenish-blue;
+            transition: 0.5s;
+            height: auto;
+            font-weight: 500;
+            &:hover{
+                background: @mint-leaf;
+            }
+        }
     }
 }
 
@@ -40,19 +128,39 @@ hr{
             margin: 0 auto;
         }
     }
-
-    h2 {
-        font-size: 2.2rem;
-        font-weight: 300;
-        margin-bottom: 1rem;
+}
+#hospo-footer,
+#footer-columns,
+#footer-sep{
+    background: @city-lights;
+}
+#hospo-footer{
+    padding-top: 100px;
+    .uk-form{
+        padding: 50px 0;
+        .uk-email{
+            border: 3px solid @dracula-orchard;
+            padding: 9px 20px;
+            border-radius: 0;
+            height: auto;
+        }
+        .uk-button{
+            color: @dracula-orchard;
+            border: 3px solid @dracula-orchard;
+            padding: 9px 20px;
+            margin-left: 5px;
+            text-transform: uppercase;
+            background: @light-greenish-blue;
+            transition: 0.5s;
+            height: auto;
+            font-weight: 500;
+            &:hover{
+                background: @mint-leaf;
+            }
+        }
     }
-
-    p {
-        color: rgb(129, 129, 129);
-        font-size: 1.2rem;
-        line-height: 1.8;
-        font-weight: 300;
-    }
-
-
+}
+#footer-columns{
+    padding-top: 100px;
+    padding-bottom: 50px;
 }

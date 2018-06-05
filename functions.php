@@ -15,7 +15,12 @@ add_action( 'beans_uikit_enqueue_scripts', function(){
 	beans_uikit_enqueue_components( array( 'sticky'), 'add-ons');
 });
 
-
+add_action( 'wp_enqueue_scripts', function() {
+	wp_register_script('hospo-typed', get_stylesheet_directory_uri() . '/js/typed.min.js', array('jquery'), '1.0.0', false);
+  	wp_register_script('hospo-custom', get_stylesheet_directory_uri() . '/js/custom.js', array('hospo-typed'), '1.0.0', false);
+	wp_enqueue_script( 'hospo-typed' );
+	wp_enqueue_script( 'hospo-custom' );
+});
 /*
  *
  * The Great Ditch
