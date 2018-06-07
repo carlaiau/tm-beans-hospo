@@ -15,57 +15,81 @@ beans_modify_action_callback('beans_loop_template', function(){
     $sections = carbon_get_the_post_meta('section');
     $footer_columns = carbon_get_the_post_meta('footer_column');
     ?>
-    <div class="uk-cover uk-height-viewport uk-position-relative" id="hero">
-        <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center uk-position-cover">
-            <div class="uk-container uk-container-center">
-                <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center">
-                    <div class="uk-width-1-1 uk-width-medium-1-2 doms uk-text-center">
-                        <div>
-                            <img src="<?php echo $header['image'][0] ;?>">
-                        </div>
+    <div id="hero">
+        <div class="uk-container uk-container-center">
+            <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center">
+                <div class="uk-width-1-1 uk-width-large-1-2 doms uk-text-center">
+                    <div>
+                        <img src="<?php echo $header['image'][0] ;?>">
                     </div>
-                    <div class="uk-width-1-1 uk-width-medium-1-2 doms">
-                        <script>
-                            var header_strings = [
-                                <?php foreach($header['title_end'] as $h){
-                                    echo '"' . $h["string"] . '",';
-                                } ?>
-                            ];
-                        </script>
+                </div>
+                <div class="uk-width-1-1 uk-width-large-1-2 doms">
+                    <script>
+                        var header_strings = [
+                            <?php foreach($header['title_end'] as $h){
+                                echo '"' . $h["string"] . '",';
+                            } ?>
+                        ];
+                    </script>
 
 
-                        <div>
-                            <h1><?php echo $header['title_start']; ?> <span class="typed-element"></span></h1>
-                            <p><?php echo $header['para']; ?></p>
-                        </div>
-                        <form class="uk-form">
-                            <input type="email" class="uk-email" placeholder="Email"/>
-                            <input type="submit" class="uk-button" value="Signup"/>
-                        </form>
+                    <div>
+                        <h1><?php echo $header['title_start']; ?> <span class="typed-element"></span></h1>
+                        <p><?php echo $header['para']; ?></p>
                     </div>
+                    <form class="uk-form">
+                        <input type="email" class="uk-email" placeholder="Email"/>
+                        <input type="submit" class="uk-button" value="Signup"/>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
 
     <?php
 
     // End Header
     // Begin Repeater
-    foreach($sections as $s){ ?>
-        <div class="uk-flex uk-flex-center uk-flex-middle">
-            <hr>
-        </div>
-        <div class="uk-cover uk-height-viewport uk-position-relative" <?php if($s['id'] != ""){ echo 'id="'. $s['id'] .'"'; } ?>>
-            <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center uk-position-cover">
+    foreach($sections as $s){
+        if(isset($s['full-height']) && $s['full-height'] == 1){  // Full 50% section ?>
+            <div class="uk-flex uk-flex-center uk-flex-middle hr-container">
+                <hr>
+            </div>
+            <div class="uk-height-viewport full-50" <?php if($s['id'] != ""){ echo 'id="'. $s['id'] .'"'; } ?>>
+                <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center <?php if($s['reverse']){ echo "uk-flex-row-reverse"; } ?>">
+                    <div class="uk-width-1-1 uk-width-large-1-2 uk-text-center uk-visible-large">
+                        <div class="uk-cover-background uk-height-viewport" style="background-image: url('<?php echo wp_get_attachment_image_src($s['image'], 'large')[0]; ?>')">
+                        </div>
+                    </div>
+                    <div class="uk-width-1-1 uk-width-large-1-2 doms uk-text-center uk-hidden-large">
+                        <div>
+                            <img src="<?php echo wp_get_attachment_image_src($s['image'], 'large')[0]; ?>">
+                        </div>
+                    </div>
+                    <div class="uk-width-1-1 uk-width-large-1-2 doms">
+                        <div>
+                            <?php echo apply_filters('the_content', $s['paragraph']); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <?php
+    } // end full height section
+        else{ // Normal Section ?>
+            <div class="uk-flex uk-flex-center uk-flex-middle hr-container">
+                <hr>
+            </div>
+            <div class="uk-cover uk-position-relative" <?php if($s['id'] != ""){ echo 'id="'. $s['id'] .'"'; } ?>>
                 <div class="uk-container uk-container-center">
                     <div class="uk-flex uk-flex-wrap uk-flex-middle uk-flex-center <?php if($s['reverse']){ echo "uk-flex-row-reverse"; } ?>">
-                        <div class="uk-width-1-1 uk-width-medium-1-2 doms uk-text-center">
+                        <div class="uk-width-1-1 uk-width-large-1-2 doms uk-text-center">
                             <div>
                                 <img src="<?php echo wp_get_attachment_image_src($s['image'], 'large')[0]; ?>">
                             </div>
                         </div>
-                        <div class="uk-width-1-1 uk-width-medium-1-2 doms">
+                        <div class="uk-width-1-1 uk-width-large-1-2 doms">
                             <div>
                                 <?php echo apply_filters('the_content', $s['paragraph']); ?>
                             </div>
@@ -73,10 +97,9 @@ beans_modify_action_callback('beans_loop_template', function(){
                     </div>
                 </div>
             </div>
-        </div>
+        <?php } // end normal section
 
-    <?php
-    } // End Repeater
+} // End Repeater
 
 
     // Start Footer

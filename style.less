@@ -42,14 +42,14 @@ h2{
 p{
     line-height: 1.5em;
 }
-.uk-container{
-    min-width: 1200px;
-    padding: 0;
-}
 
+.uk-height-viewport{
+    height: auto;
+    min-height: 100vh;
+}
 .tm-header{
     padding: 10px;
-    margin-bottom: -61px;
+
     background: #fff;
     border-bottom: none;
     .uk-container{
@@ -118,9 +118,25 @@ hr{
         }
     }
 }
-
+.hr-container{
+}
+.full-50{
+    margin: 150px 0;
+    .uk-flex-row-reverse{
+        .doms{
+            padding: 0;
+            padding-right: 10%;
+            padding-left: 5%;
+        }
+    }
+    .doms{
+        padding: 0;
+        padding-left: 10%;
+        padding-right: 5%;
+    }
+}
 .doms{
-    padding: 5%;
+    padding: 150px 5%;
     div{
         img{
             max-width: 100%;
@@ -163,4 +179,25 @@ hr{
 #footer-columns{
     padding-top: 100px;
     padding-bottom: 50px;
+}
+
+@media (max-width: 959px){
+    .doms{
+        padding: 5% 10%;
+    }
+    .full-50{
+        &.uk-height-viewport {
+            height: auto !important;
+            min-height: auto;
+        }
+        margin: 0;
+        .uk-flex-row-reverse{
+            .doms{
+                padding: 5% 10%;
+            }
+        }
+        .doms{
+                padding: 5% 10%;
+        }
+    }
 }

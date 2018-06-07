@@ -43,6 +43,8 @@ add_action( 'carbon_fields_register_fields', function() {
                 Field::make('image', 'image', 'Image'),
                 Field::make('rich_text', 'paragraph', 'Paragraph'),
                 Field::make('checkbox', 'reverse', 'Reverse?')
+                    ->set_option_value( '1' ),
+                Field::make('checkbox', 'full-height', 'Full 50% Image')
                     ->set_option_value( '1' )
             ))
         ));
